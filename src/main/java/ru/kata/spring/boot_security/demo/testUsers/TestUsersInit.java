@@ -43,10 +43,6 @@ public class TestUsersInit {
             user.addRole(roleService.getRoleByName("ROLE_USER"));
         }
 
-        System.out.println(roleService.getRoleByName("ROLE_ADMIN"));
-        System.out.println(roleService.getRoleByName("ROLE_USER"));
-
-
         userService.addUser(admin);
         userService.addUser(user);
     }
