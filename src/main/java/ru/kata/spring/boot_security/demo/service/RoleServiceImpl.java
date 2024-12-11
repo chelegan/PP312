@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.entity.model.Role;
-import ru.kata.spring.boot_security.demo.entity.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import java.util.HashSet;
@@ -42,4 +41,8 @@ public class RoleServiceImpl implements RoleService {
         roleRepository.deleteAll();
     }
 
+    @Override
+    public void saveRole(Role role) {
+        roleRepository.save(role);
+    }
 }

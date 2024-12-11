@@ -32,13 +32,15 @@ public class TestUsersInit {
         User user = new User("user", "user");
 
         if (roleService.getRoleByName("ROLE_ADMIN") == null) {
-            admin.addRole(new Role("ROLE_ADMIN"));
+            roleService.saveRole(new Role("ROLE_ADMIN"));
+            admin.addRole(roleService.getRoleByName("ROLE_ADMIN"));
         } else {
             admin.addRole(roleService.getRoleByName("ROLE_ADMIN"));
         }
 
         if (roleService.getRoleByName("ROLE_USER") == null) {
-            user.addRole(new Role("ROLE_USER"));
+            roleService.saveRole(new Role("ROLE_USER"));
+            user.addRole(roleService.getRoleByName("ROLE_USER"));
         } else {
             user.addRole(roleService.getRoleByName("ROLE_USER"));
         }
