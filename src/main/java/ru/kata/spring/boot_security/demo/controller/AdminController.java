@@ -38,10 +38,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/users")
     public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam("role") String role) {
+                          @RequestParam(value = "role1", required = false) String role1,
+                          @RequestParam(value = "role2", required = false) String role2) {
 
-
-        user.setRoles(roleServiceImpl.getSetOfRoles(role));
+        user.setRoles(roleServiceImpl.getSetOfRoles(role1, role2));
         userService.addUser(user);
 
         return "redirect:/admin/users";
@@ -58,6 +58,12 @@ public class AdminController {
     @GetMapping("/admin/update")
     public String getFormForUpdateUser(Model model, @RequestParam("id") Long id) {
 
+        model.addAttribute("isAdmin", userService.getUser(id).getRoles()
+                .contains(roleServiceImpl.getRoleByName("ROLE_ADMIN")));
+
+        model.addAttribute("isUser", userService.getUser(id).getRoles()
+                .contains(roleServiceImpl.getRoleByName("ROLE_USER")));
+
         model.addAttribute("user", userService.getUser(id));
 
         return "updateUser";
@@ -65,9 +71,10 @@ public class AdminController {
 
     @PostMapping("/admin/update")
     public String updateUser(@ModelAttribute("user") User user,
-                             @RequestParam("role") String role) {
+                             @RequestParam(value = "role1", required = false) String role1,
+                             @RequestParam(value = "role2", required = false) String role2) {
 
-        user.setRoles(roleServiceImpl.getSetOfRoles(role));
+        user.setRoles(roleServiceImpl.getSetOfRoles(role1, role2));
         userService.updateUser(user);
 
         return "redirect:/admin/users";

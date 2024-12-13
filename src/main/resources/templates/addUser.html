@@ -33,12 +33,12 @@
     <br/>
 
     <label for="roleAdmin"> Admin: </label>
-    <input type="checkbox" name="role" th:value="ROLE_ADMIN" id="roleAdmin" />
+    <input type="checkbox" name="role1" th:value="ROLE_ADMIN" id="roleAdmin" />
     <br/>
     <br/>
 
     <label for="roleUser"> User: </label>
-    <input type="checkbox" name="role" th:value="ROLE_USER" id="roleUser" />
+    <input type="checkbox" name="role2" th:value="ROLE_USER" id="roleUser" />
     <br/>
     <br/>
 
@@ -65,23 +65,6 @@
         <a href="/logout">Logout</a>
     </button>
 </form>
-
-<script th:inline="javascript">
-
-    const roleAdminCheckbox = document.getElementById('roleAdmin');
-    const roleUserCheckbox = document.getElementById('roleUser');
-
-    function setOnlyOneCheckbox() {
-        if (roleAdminCheckbox.checked) {
-            roleUserCheckbox.checked = false;
-        } else {
-            roleAdminCheckbox.checked = false;
-        }
-    }
-
-    roleAdminCheckbox.addEventListener('change', setOnlyOneCheckbox);
-    roleUserCheckbox.addEventListener('change', setOnlyOneCheckbox);
-</script>
 
 </body>
 </html>
